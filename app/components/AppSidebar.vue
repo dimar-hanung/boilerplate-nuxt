@@ -37,23 +37,7 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
+
   navMain: [
     {
       title: "Playground",
@@ -66,30 +50,7 @@ const data = {
           url: "#",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
           title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
           url: "#",
         },
       ],
@@ -107,37 +68,6 @@ const data = {
           title: "Get Started",
           url: "#",
         },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
       ],
     },
   ],
@@ -152,11 +82,6 @@ const data = {
       url: "#",
       icon: PieChart,
     },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
   ],
 };
 </script>
@@ -164,7 +89,7 @@ const data = {
 <template>
   <Sidebar v-bind="props">
     <SidebarHeader>
-      <TeamSwitcher :teams="data.teams" />
+      <TeamSwitcher />
     </SidebarHeader>
     <SidebarContent>
       <NavMain :items="data.navMain" />
