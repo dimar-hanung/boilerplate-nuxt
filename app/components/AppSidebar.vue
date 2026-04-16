@@ -16,7 +16,7 @@ import {
 import NavMain from "@/components/NavMain.vue";
 import NavProjects from "@/components/NavProjects.vue";
 import NavUser from "@/components/NavUser.vue";
-import TeamSwitcher from "@/components/TeamSwitcher.vue";
+import AppLogo from "@/components/AppLogo.vue";
 
 import {
   Sidebar,
@@ -89,7 +89,7 @@ const data = {
 <template>
   <Sidebar v-bind="props">
     <SidebarHeader>
-      <TeamSwitcher />
+      <AppLogo />
     </SidebarHeader>
     <SidebarContent>
       <NavMain :items="data.navMain" />
