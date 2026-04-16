@@ -2,15 +2,9 @@
 import type { SidebarProps } from "@/components/ui/sidebar";
 
 import {
-  AudioWaveform,
   BookOpen,
-  Bot,
-  Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
   PieChart,
-  Settings2,
   SquareTerminal,
 } from "lucide-vue-next";
 import NavMain from "@/components/NavMain.vue";
@@ -30,60 +24,41 @@ const props = withDefaults(defineProps<SidebarProps>(), {
   collapsible: "icon",
 });
 
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
+const { data: session } = useAuthSession();
 
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-  ],
-};
+const navMain = [
+  {
+    title: "Playground",
+    url: "#",
+    icon: SquareTerminal,
+    isActive: true,
+    items: [
+      { title: "History", url: "#" },
+      { title: "Settings", url: "#" },
+    ],
+  },
+  {
+    title: "Documentation",
+    url: "#",
+    icon: BookOpen,
+    items: [
+      { title: "Introduction", url: "#" },
+      { title: "Get Started", url: "#" },
+    ],
+  },
+];
+
+const projects = [
+  { name: "Design Engineering", url: "#", icon: GalleryVerticalEnd },
+  { name: "Sales & Marketing", url: "#", icon: PieChart },
+];
+
+const sidebarUser = computed(() => ({
+  name: session.value?.user?.name || "",
+  email: session.value?.user?.email || "",
+  avatar: session.value?.user?.image || "",
+  username: session.value?.user?.username || "",
+}));
 </script>
 
 <template>
@@ -92,11 +67,11 @@ const data = {
       <AppLogo />
     </SidebarHeader>
     <SidebarContent>
-      <NavMain :items="data.navMain" />
-      <NavProjects :projects="data.projects" />
+      <NavMain :items="navMain" />
+      <NavProjects :projects="projects" />
     </SidebarContent>
     <SidebarFooter>
-      <NavUser :user="data.user" />
+      <NavUser :user="sidebarUser" />
     </SidebarFooter>
     <SidebarRail />
   </Sidebar>
